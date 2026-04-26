@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCMV — Região de Campinas · RDZ Empreendimentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root {
+  --bg: #F0F2F7;
+  --surface: #FFFFFF;
+  --surface2: #F7F8FB;
+  --surface3: #EEF0F6;
+  --border: rgba(0,0,0,0.08);
+  --border2: rgba(0,0,0,0.14);
+  --text: #111827;
+  --muted: #4B5563;
+  --dim: #9CA3AF;
+  --blue: #1D6FD8;
+  --blue-lt: #2563EB;
+  --gold: #A87B20;
+  --gold-lt: #CA9A2E;
+  --green: #16A34A;
+  --red: #DC2626;
+  --amber: #D97706;
+  --teal: #0D9488;
+  --rose: #E11D48;
+  --purple: #7C3AED;
+  --serif: 'Playfair Display', serif;
+  --sans: 'Outfit', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* ─── RDZ COVER ─── */
+.cover{display:grid;grid-template-columns:340px 1fr;min-height:220px;border-bottom:1px solid rgba(0,0,0,0.08);overflow:hidden;position:relative;background:linear-gradient(135deg,#0f1623 0%,#1a2540 100%);}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 120% at 0% 50%,rgba(201,168,76,0.1) 0%,transparent 60%);}
+.cover-l{padding:44px 48px;display:flex;flex-direction:column;justify-content:center;gap:22px;position:relative;border-right:1px solid rgba(255,255,255,0.08);}
+.rdz-logo{display:flex;flex-direction:column;gap:5px;}
+.rdz-wordmark{font-family:var(--serif);font-size:48px;font-weight:600;color:#fff;letter-spacing:-1px;line-height:1;}
+.rdz-sub{font-family:var(--mono);font-size:7.5px;color:rgba(255,255,255,0.35);letter-spacing:.22em;text-transform:uppercase;}
+.cover-divider{width:36px;height:1px;background:#C9A84C;opacity:.6;}
+.cover-doc{display:flex;flex-direction:column;gap:3px;}
+.cover-doc-tag{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:.15em;}
+.cover-doc-title{font-family:var(--serif);font-size:17px;color:#C9A84C;font-style:italic;}
+.cover-doc-sub{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.5);}
+.cover-r{padding:44px 52px;display:flex;flex-direction:column;justify-content:space-between;position:relative;background:rgba(255,255,255,0.03);}
+.cover-r-top{display:flex;flex-direction:column;gap:8px;}
+.cover-r-label{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:.15em;}
+.cover-cities{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.9;}
+.cover-cities strong{color:rgba(255,255,255,0.9);font-weight:500;}
+.cover-meta{display:flex;gap:48px;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);}
+.cover-meta-item{display:flex;flex-direction:column;gap:3px;}
+.cover-meta-num{font-family:var(--serif);font-size:28px;color:#fff;}
+.cover-meta-lbl{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:.12em;}
+.cover-source{font-family:var(--mono);font-size:8px;color:rgba(255,255,255,0.25);margin-top:6px;}
+
+/* ─── NAV ─── */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 64px;display:flex;align-items:center;overflow-x:auto;box-shadow:0 1px 8px rgba(0,0,0,0.06);}
+.nav-brand{font-family:var(--serif);font-size:13px;color:var(--gold);padding:14px 20px 14px 0;border-right:1px solid var(--border);margin-right:8px;white-space:nowrap;font-style:italic;}
+.nav a{font-family:var(--mono);font-size:10px;color:var(--dim);text-decoration:none;text-transform:uppercase;letter-spacing:.08em;padding:16px 14px;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
+.nav a:hover{color:var(--text);}
+.nav a.active{color:var(--gold);border-bottom-color:var(--gold);}
+
+/* ─── MAIN ─── */
+main{max-width:1280px;margin:0 auto;padding:0 64px 120px;}
+
+/* ─── SECTIONS ─── */
+.section{padding:68px 0 0;}
+.sec-hdr{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+.sec-num{font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.1em;}
+.sec-title{font-family:var(--serif);font-size:30px;font-weight:400;}
+.sec-badge{margin-left:auto;background:rgba(43,123,224,0.1);border:1px solid rgba(43,123,224,0.2);border-radius:4px;padding:4px 10px;font-family:var(--mono);font-size:9px;color:var(--blue-lt);text-transform:uppercase;letter-spacing:.07em;}
+.sec-badge.gold{background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.2);color:var(--gold);}
+
+/* ─── LAYOUT ─── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px;}
+.g6{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:20px;}
+.g65{display:grid;grid-template-columns:1.4fr 1fr;gap:16px;margin-bottom:16px;}
+
+/* ─── KPI CARDS ─── */
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px 22px;transition:all .2s;position:relative;overflow:hidden;}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--kc,var(--blue)) 0%,transparent 100%);}
+.kpi:hover{border-color:var(--border2);transform:translateY(-1px);}
+.kpi-lbl{font-family:var(--mono);font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;display:block;}
+.kpi-val{font-size:26px;font-weight:600;line-height:1;margin-bottom:6px;}
+.kpi-sub{font-size:11px;color:var(--muted);line-height:1.4;}
+.kpi-delta{display:inline-flex;align-items:center;gap:3px;font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:3px;margin-top:5px;}
+.up{background:rgba(22,163,74,.1);color:#16A34A;}
+.dn{background:rgba(220,38,38,.1);color:#DC2626;}
+.c-blue{color:var(--blue-lt);}
+.c-gold{color:var(--gold);}
+.c-green{color:var(--green);}
+.c-teal{color:var(--teal);}
+.c-amber{color:var(--amber);}
+.c-rose{color:var(--rose);}
+.c-purple{color:var(--purple);}
+
+/* ─── CARDS ─── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:26px 28px;transition:border-color .2s;box-shadow:0 1px 4px rgba(0,0,0,0.05);}
+.card:hover{border-color:var(--border2);box-shadow:0 4px 16px rgba(0,0,0,0.08);}
+.card-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.card-sub{font-family:var(--mono);font-size:9px;color:var(--dim);margin-bottom:20px;text-transform:uppercase;letter-spacing:.07em;}
+.chart-h170{position:relative;width:100%;height:170px;}
+.chart-h210{position:relative;width:100%;height:210px;}
+.chart-h260{position:relative;width:100%;height:260px;}
+.chart-h300{position:relative;width:100%;height:300px;}
+.src{font-family:var(--mono);font-size:8.5px;color:var(--dim);margin-top:10px;display:block;}
+
+/* ─── FAIXAS MCMV ─── */
+.update-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(220,38,38,.07);border:1px solid rgba(220,38,38,.2);border-radius:4px;padding:4px 10px;font-family:var(--mono);font-size:9px;color:#DC2626;text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px;}
+.faixas{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px;}
+.fx{border-radius:10px;padding:18px 16px;border:1px solid;}
+.fx-num{font-family:var(--mono);font-size:8px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:5px;}
+.fx-renda{font-size:12px;font-weight:600;margin-bottom:8px;}
+.fx-lbl{font-family:var(--mono);font-size:8px;color:var(--dim);display:block;margin-bottom:2px;}
+.fx-teto{font-size:14px;font-weight:600;margin-bottom:6px;}
+.fx-juros{font-size:10px;color:var(--muted);}
+.fx-tag{font-family:var(--mono);font-size:8px;color:#DC2626;margin-left:4px;}
+.fx1{background:rgba(34,197,94,.05);border-color:rgba(34,197,94,.18);}  .fx1 .fx-num,.fx1 .fx-renda,.fx1 .fx-teto{color:#16A34A;}
+.fx2{background:rgba(20,184,166,.05);border-color:rgba(20,184,166,.18);} .fx2 .fx-num,.fx2 .fx-renda,.fx2 .fx-teto{color:#0D9488;}
+.fx3{background:rgba(43,123,224,.05);border-color:rgba(43,123,224,.18);} .fx3 .fx-num,.fx3 .fx-renda,.fx3 .fx-teto{color:#1D6FD8;}
+.fx4{background:rgba(201,168,76,.05);border-color:rgba(201,168,76,.18);} .fx4 .fx-num,.fx4 .fx-renda,.fx4 .fx-teto{color:#A87B20;}
+
+/* ─── FUNNEL BARS ─── */
+.funnel{display:flex;flex-direction:column;gap:9px;}
+.fn-row{display:flex;align-items:center;gap:10px;}
+.fn-lbl{font-size:11px;color:var(--muted);width:100px;flex-shrink:0;}
+.fn-wrap{flex:1;background:rgba(0,0,0,.06);border-radius:3px;height:28px;position:relative;overflow:hidden;}
+.fn-fill{height:100%;border-radius:3px;display:flex;align-items:center;padding-left:10px;}
+.fn-val{font-family:var(--mono);font-size:10px;font-weight:500;color:var(--text);position:relative;}
+.fn-num{font-family:var(--mono);font-size:10px;color:var(--muted);width:80px;text-align:right;flex-shrink:0;}
+
+/* ─── TABLE ─── */
+.tbl{width:100%;border-collapse:collapse;font-size:12px;}
+.tbl thead th{font-family:var(--mono);font-size:8.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;padding:0 0 12px;border-bottom:1px solid var(--border);text-align:right;}
+.tbl thead th:first-child{text-align:left;}
+.tbl tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
+.tbl tbody tr:hover{background:rgba(0,0,0,.025);}
+.tbl tbody tr:last-child{border-bottom:none;}
+.tbl tbody td{padding:12px 0;vertical-align:middle;text-align:right;color:var(--muted);}
+.tbl tbody td:first-child{text-align:left;}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-family:var(--mono);font-size:8.5px;font-weight:500;}
+.p-green{background:rgba(22,163,74,.1);color:#16A34A;}
+.p-teal{background:rgba(20,184,166,.1);color:var(--teal);}
+.p-blue{background:rgba(43,123,224,.1);color:var(--blue-lt);}
+.p-amber{background:rgba(245,158,11,.1);color:var(--amber);}
+.p-rose{background:rgba(251,113,133,.1);color:var(--rose);}
+.p-dim{background:rgba(0,0,0,.07);color:#6B7280;}
+
+/* ─── CITY CARDS ─── */
+.city-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;}
+.cc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px;transition:all .22s;box-shadow:0 1px 4px rgba(0,0,0,.04);}
+.cc:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.28);}
+.cc-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;}
+.cc-name{font-size:15px;font-weight:600;color:var(--text);}
+.cc-pop{font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:2px;}
+.cc-src{font-family:var(--mono);font-size:8px;color:var(--green);}
+.cc-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.cc-m{display:flex;flex-direction:column;gap:2px;}
+.cc-m-lbl{font-family:var(--mono);font-size:7.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;}
+.cc-m-val{font-size:14px;font-weight:600;}
+.cc-divider{height:1px;background:var(--border);margin:12px 0;}
+.cc-mcmv{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.cc-mcmv-lbl{font-family:var(--mono);font-size:8.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;}
+.cc-mcmv-val{font-size:12px;font-weight:600;color:var(--gold);}
+.cc-desc{margin-top:10px;font-size:11px;color:var(--dim);line-height:1.55;}
+
+/* ─── CALLOUT ─── */
+.callout{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.13);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;font-size:13px;color:var(--muted);line-height:1.75;}
+.callout strong{color:var(--text);}
+
+/* ─── VERDICT ─── */
+.verdict{background:linear-gradient(135deg,rgba(43,123,224,.06) 0%,rgba(201,168,76,.04) 100%);border:1px solid rgba(29,111,216,.15);border-radius:12px;padding:32px 36px;margin-top:36px;}
+.verdict-title{font-family:var(--serif);font-size:20px;margin-bottom:14px;}
+.verdict-body{font-size:13.5px;color:var(--muted);line-height:1.9;}
+
+/* ─── MINI BAR ─── */
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+.bar-lbl{font-size:11.5px;color:var(--muted);width:110px;flex-shrink:0;}
+.bar-wrap{flex:1;background:rgba(0,0,0,.06);border-radius:3px;height:7px;position:relative;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;position:absolute;left:0;top:0;}
+.bar-num{font-family:var(--mono);font-size:10px;color:var(--text);width:90px;text-align:right;flex-shrink:0;}
+
+/* ─── HEATMAP ─── */
+.heatmap-tbl{width:100%;border-collapse:collapse;font-size:10px;}
+.heatmap-tbl th{font-family:var(--mono);font-size:8px;color:var(--dim);text-transform:uppercase;letter-spacing:.07em;padding:6px 4px;border-bottom:1px solid var(--border);text-align:center;}
+.heatmap-tbl th:first-child{text-align:left;}
+.heatmap-tbl td{padding:6px 3px;text-align:center;}
+.heatmap-tbl td:first-child{text-align:left;font-weight:500;font-size:11px;}
+.hcell{border-radius:4px;padding:4px 6px;font-family:var(--mono);font-size:9px;font-weight:500;}
+
+/* ─── FOOTER ─── */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:28px 64px;}
+.ft{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.ft-txt{font-family:var(--mono);font-size:8.5px;color:var(--dim);line-height:1.7;}
+
+/* ─── TABS ─── */
+.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:20px;}
+.tab{font-family:var(--mono);font-size:9.5px;color:var(--dim);padding:9px 16px;cursor:pointer;border-bottom:2px solid transparent;text-transform:uppercase;letter-spacing:.08em;transition:all .2s;}
+.tab:hover{color:var(--text);}
+.tab.active{color:var(--blue-lt);border-bottom-color:var(--blue);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:960px){
+  .cover{grid-template-columns:1fr;}.cover-l{border-right:none;border-bottom:1px solid var(--border);}
+  .nav,main,.ft{padding-left:20px;padding-right:20px;}
+  .g2,.g3,.g65,.city-cards{grid-template-columns:1fr;}
+  .g4,.faixas{grid-template-columns:1fr 1fr;}
+  .g5,.g6{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ COVER ══════════════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-l">
+    <div class="rdz-logo">
+      <div class="rdz-wordmark">RDZ</div>
+      <div class="rdz-sub">Empreendimentos Imobiliários</div>
+    </div>
+    <div class="cover-divider"></div>
+    <div class="cover-doc">
+      <span class="cover-doc-tag">Inteligência de Mercado</span>
+      <span class="cover-doc-title">MCMV · Região de Campinas</span>
+      <span class="cover-doc-sub">Anuário Secovi-SP 2025 · Novas Regras Abr/2026</span>
+    </div>
+  </div>
+  <div class="cover-r">
+    <div class="cover-r-top">
+      <span class="cover-r-label">Municípios monitorados — Painel Secovi-SP</span>
+      <div class="cover-cities">
+        <strong>Campinas</strong> · <strong>Indaiatuba</strong> · <strong>Hortolândia</strong> ·
+        <strong>Sumaré</strong> · <strong>Jundiaí</strong> · <strong>Valinhos</strong>
+      </div>
+      <div class="cover-source">Fonte dos dados de mercado imobiliário: Secovi-SP — Pesquisa Mensal do Mercado Imobiliário. Somente cidades com ficha completa no Anuário 2025 são incluídas neste relatório.</div>
+    </div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-num">6</span>
+        <span class="cover-meta-lbl">Municípios</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-num">2,56M</span>
+        <span class="cover-meta-lbl">Habitantes</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-num">8.701</span>
+        <span class="cover-meta-lbl">UL MCMV 2025</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-num">Abr/26</span>
+        <span class="cover-meta-lbl">Atualização</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAV ═══════════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-brand">RDZ · MCMV</div>
+  <a href="#visao">Visão Geral</a>
+  <a href="#regras">Regras MCMV</a>
+  <a href="#mercado">Mercado</a>
+  <a href="#demografico">Demográfico</a>
+  <a href="#cidades">Cidades</a>
+  <a href="#ranking">Rankings</a>
+  <a href="#analise">Análise</a>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════════
+     01 · VISÃO GERAL
+══════════════════════════════════════════════════════════════ -->
+<section id="visao" class="section">
+  <div class="sec-hdr">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Visão Geral</h2>
+    <span class="sec-badge">Secovi-SP · Anuário 2025</span>
+  </div>
+
+  <div class="g6">
+    <div class="kpi" style="--kc:var(--blue-lt)">
+      <span class="kpi-lbl">UL MCMV — Total</span>
+      <div class="kpi-val c-blue">8.701</div>
+      <div class="kpi-sub">Unidades lançadas MCMV · 6 cidades</div>
+      <span class="kpi-delta up">▲ +27% vs 2024</span>
+    </div>
+    <div class="kpi" style="--kc:var(--gold)">
+      <span class="kpi-lbl">UV MCMV — Total</span>
+      <div class="kpi-val c-gold">8.988</div>
+      <div class="kpi-sub">Unidades vendidas MCMV · 2025</div>
+      <span class="kpi-delta up">▲ +31% vs 2024</span>
+    </div>
+    <div class="kpi" style="--kc:var(--amber)">
+      <span class="kpi-lbl">OF MCMV — Dez/25</span>
+      <div class="kpi-val c-amber">5.409</div>
+      <div class="kpi-sub">Oferta final disponível</div>
+      <span class="kpi-delta dn">▼ -8% vs 2024</span>
+    </div>
+    <div class="kpi" style="--kc:var(--green)">
+      <span class="kpi-lbl">VGL MCMV</span>
+      <div class="kpi-val c-green">R$1,97bi</div>
+      <div class="kpi-sub">Valor geral de lançamentos</div>
+      <span class="kpi-delta up">▲ +22% vs 2024</span>
+    </div>
+    <div class="kpi" style="--kc:var(--teal)">
+      <span class="kpi-lbl">VGV MCMV</span>
+      <div class="kpi-val c-teal">R$2,75bi</div>
+      <div class="kpi-sub">Valor geral de vendas</div>
+      <span class="kpi-delta up">▲ +28% vs 2024</span>
+    </div>
+    <div class="kpi" style="--kc:var(--rose)">
+      <span class="kpi-lbl">Preço Médio MCMV</span>
+      <div class="kpi-val c-rose">R$290k</div>
+      <div class="kpi-sub">Média pond. VGL/UL · 5 cidades</div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">MCMV vs. Outros Mercados — Lançamentos 2025</div>
+      <div class="card-sub">Participação por tipo · 6 cidades Secovi-SP · interior SP = 56%</div>
+      <div class="chart-h210"><canvas id="cDonut"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Lançamentos MCMV por Cidade — 2025</div>
+      <div class="card-sub">Unidades lançadas (UL) · dados Secovi-SP</div>
+      <div class="chart-h210"><canvas id="cLanc"></canvas></div>
+    </div>
+  </div>
+
+  <div class="g65">
+    <div class="card">
+      <div class="card-title">Funil MCMV: Lançamentos → Vendas → Estoque</div>
+      <div class="card-sub">Selecione o indicador para visualizar por cidade</div>
+      <div class="tabs" id="funnelTabs">
+        <div class="tab active" onclick="showFunnel('ul',this)">UL — Lançados</div>
+        <div class="tab" onclick="showFunnel('uv',this)">UV — Vendidos</div>
+        <div class="tab" onclick="showFunnel('of',this)">OF — Estoque</div>
+      </div>
+      <div id="funnelContent" class="funnel"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Preço Médio MCMV por Cidade</div>
+      <div class="card-sub">R$ mil por unidade · VGL ÷ UL · 2025</div>
+      <div class="chart-h210"><canvas id="cPreco"></canvas></div>
+      <span class="src">Valinhos: UL MCMV = 0 em 2025 — excluída do cálculo de preço médio</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Destaque regional 2025:</strong> A região de Campinas comercializou <strong>7.141 imóveis novos no 1º semestre de 2025</strong> (média de 39/dia), superando o ritmo da RMSP. O MCMV respondeu por <strong>56% dos lançamentos</strong> nas 41 cidades do interior monitoradas pelo Secovi-SP. Com o novo teto Faixa 3 de <strong>R$400k</strong> (vigência 22/04/2026), produtos entre R$320k–R$390k passam a ser integralmente elegíveis — impacto direto em Indaiatuba, Campinas e Jundiaí.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     02 · REGRAS MCMV
+══════════════════════════════════════════════════════════════ -->
+<section id="regras" class="section">
+  <div class="sec-hdr">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Novas Regras do MCMV</h2>
+    <span class="sec-badge">Portaria MCID nº 333 · 22/04/2026</span>
+  </div>
+
+  <div class="update-badge">🔴 Vigência 22/04/2026 — Caixa Econômica Federal e Banco do Brasil</div>
+
+  <div class="faixas">
+    <div class="fx fx1">
+      <div class="fx-num">Faixa 1</div>
+      <div class="fx-renda">Até R$ 3.200/mês</div>
+      <span class="fx-lbl">Teto do imóvel</span>
+      <div class="fx-teto">R$ 275.000</div>
+      <div class="fx-juros">Juros a partir de 4,0% a.a. · Subsídio quase integral</div>
+    </div>
+    <div class="fx fx2">
+      <div class="fx-num">Faixa 2</div>
+      <div class="fx-renda">Até R$ 5.000/mês</div>
+      <span class="fx-lbl">Teto do imóvel</span>
+      <div class="fx-teto">R$ 275.000</div>
+      <div class="fx-juros">Juros a partir de 5,5% a.a.</div>
+    </div>
+    <div class="fx fx3">
+      <div class="fx-num">Faixa 3</div>
+      <div class="fx-renda">Até R$ 9.600/mês</div>
+      <span class="fx-lbl">Teto do imóvel <span class="fx-tag">↑ era R$350k</span></span>
+      <div class="fx-teto">R$ 400.000</div>
+      <div class="fx-juros">Juros a partir de 7,66% a.a.</div>
+    </div>
+    <div class="fx fx4">
+      <div class="fx-num">Faixa 4 · Classe Média</div>
+      <div class="fx-renda">Até R$ 13.000/mês</div>
+      <span class="fx-lbl">Teto do imóvel <span class="fx-tag">↑ era R$500k</span></span>
+      <div class="fx-teto">R$ 600.000</div>
+      <div class="fx-juros">Juros a partir de 10,0% a.a.</div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">Enquadramento das Cidades por Faixa MCMV</div>
+      <div class="card-sub">Renda dom. média vs. tetos de faixa · IBGE Censo 2022</div>
+      <div class="chart-h260"><canvas id="cFaixas"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Evolução do Teto de Acesso ao MCMV</div>
+      <div class="card-sub">Renda máxima permitida ao longo do tempo · R$/mês</div>
+      <div class="chart-h260"><canvas id="cEvolucao"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     03 · MERCADO MCMV
+══════════════════════════════════════════════════════════════ -->
+<section id="mercado" class="section">
+  <div class="sec-hdr">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Mercado MCMV em Detalhe</h2>
+    <span class="sec-badge">Dados 100% Secovi-SP</span>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">VGV MCMV por Cidade — 2025 (R$ milhões)</div>
+      <div class="card-sub">Valor geral de vendas MCMV · ranking</div>
+      <div class="chart-h260"><canvas id="cVgv"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Vendas vs. Oferta Final MCMV</div>
+      <div class="card-sub">UV (vendas 2025) vs. OF (estoque dez/2025)</div>
+      <div class="chart-h260"><canvas id="cUvOf"></canvas></div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">Tipologia MCMV — Distribuição por Dormitórios</div>
+      <div class="card-sub">Unidades lançadas (categoria econômica) · Secovi-SP 2025</div>
+      <div class="chart-h260"><canvas id="cDorm"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Velocidade de Vendas MCMV — Razão UV/UL</div>
+      <div class="card-sub">Calculada diretamente do Secovi-SP: UV ÷ UL · razão > 1,0 = absorção de estoque anterior</div>
+      <div class="chart-h260"><canvas id="cVeloc"></canvas></div>
+      <span class="src">Fonte: Secovi-SP Anuário 2025 · UV (unidades vendidas) e UL (unidades lançadas) extraídos diretamente do anuário. A razão UV/UL não é uma métrica externa — é calculada a partir dos dados brutos de cada cidade.</span>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title">Tabela Completa — Mercado MCMV por Cidade · 2025</div>
+    <div class="card-sub">UL = Lançadas · UV = Vendidas · OF = Oferta Final · VGL/VGV/VGO em R$ milhões · Fonte: Secovi-SP Anuário 2025</div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Cidade</th>
+          <th>UL</th><th>UV</th><th>OF</th>
+          <th>VGL (R$mi)</th><th>VGV (R$mi)</th><th>VGO (R$mi)</th>
+          <th>Preço Médio</th><th>Velocidade</th>
+        </tr>
+      </thead>
+      <tbody id="mainTbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     04 · DEMOGRÁFICO
+══════════════════════════════════════════════════════════════ -->
+<section id="demografico" class="section">
+  <div class="sec-hdr">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Perfil Demográfico</h2>
+    <span class="sec-badge gold">IBGE Censo 2022 · PIB Municípios IBGE 2021</span>
+  </div>
+
+  <div class="g4">
+    <div class="kpi" style="--kc:var(--blue-lt)">
+      <span class="kpi-lbl">Maior PIB per Capita</span>
+      <div class="kpi-val c-blue">Jundiaí</div>
+      <div class="kpi-sub">R$55.500/hab · polo industrial e tecnologia</div>
+    </div>
+    <div class="kpi" style="--kc:var(--green)">
+      <span class="kpi-lbl">Maior Renda Domiciliar</span>
+      <div class="kpi-val c-green">Campinas</div>
+      <div class="kpi-sub">R$5.820/mês · capital regional</div>
+    </div>
+    <div class="kpi" style="--kc:var(--amber)">
+      <span class="kpi-lbl">Maior Comprometimento</span>
+      <div class="kpi-val c-amber">Hortolândia</div>
+      <div class="kpi-sub">~35% da renda com aluguel</div>
+    </div>
+    <div class="kpi" style="--kc:var(--teal)">
+      <span class="kpi-lbl">Pop. mais jovem</span>
+      <div class="kpi-val c-teal">Hortolândia</div>
+      <div class="kpi-sub">Idade mediana ~30,9 anos</div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">PIB per Capita (R$/hab) — IBGE 2021</div>
+      <div class="card-sub">Último dado disponível · PIB dos Municípios IBGE</div>
+      <div class="chart-h260"><canvas id="cPib"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Renda Domiciliar Média Mensal (R$)</div>
+      <div class="card-sub">Rendimento médio familiar · IBGE Censo 2022</div>
+      <div class="chart-h260"><canvas id="cRenda"></canvas></div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">Comprometimento de Renda com Aluguel (%)</div>
+      <div class="card-sub">% da renda domiciliar comprometida · referência IBGE/FGV</div>
+      <div class="chart-h210"><canvas id="cAlug"></canvas></div>
+      <div class="callout" style="margin-top:14px;margin-bottom:0">
+        <strong>Hortolândia (35%) e Sumaré (32%)</strong> superam o limite recomendado de 30%, evidenciando forte demanda estrutural por habitação MCMV Faixas 1 e 2 nessas cidades.
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Renda Domiciliar por Cidade vs. Faixas MCMV</div>
+      <div class="card-sub">Renda média vs. tetos de renda das faixas · IBGE Censo 2022</div>
+      <div class="chart-h210"><canvas id="cRendaFx"></canvas></div>
+      <span class="src">Linhas tracejadas: Teto Faixa 2 (R$5.000) · Faixa 3 (R$9.600) · Faixa 4 (R$13.000)</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Tabela Demográfica Completa</div>
+    <div class="card-sub">Fontes: IBGE Censo 2022 · PIB dos Municípios IBGE 2021 · SEADE · FGV IBRE</div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Cidade</th><th>Pop. (2024 proj.)</th><th>Idade Mediana</th>
+          <th>Renda Dom. (R$/mês)</th><th>PIB per Cap. (R$)</th>
+          <th>Preço Médio Imóvel</th><th>Compr. Aluguel</th><th>Faixa MCMV Predominante</th>
+        </tr>
+      </thead>
+      <tbody id="demoTbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     05 · CIDADES
+══════════════════════════════════════════════════════════════ -->
+<section id="cidades" class="section">
+  <div class="sec-hdr">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Perfis Municipais</h2>
+    <span class="sec-badge">6 Cidades · Secovi-SP</span>
+  </div>
+  <div class="city-cards" id="cityCards"></div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     06 · RANKINGS
+══════════════════════════════════════════════════════════════ -->
+<section id="ranking" class="section">
+  <div class="sec-hdr">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">Rankings</h2>
+    <span class="sec-badge">Múltiplas Dimensões</span>
+  </div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="card-title">Volume MCMV — UL 2025</div>
+      <div class="card-sub">Unidades lançadas · Secovi-SP</div>
+      <div id="rankUl" class="funnel"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">PIB per Capita</div>
+      <div class="card-sub">R$ mil/hab · IBGE 2021</div>
+      <div id="rankPib" class="funnel"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Comprometimento c/ Aluguel</div>
+      <div class="card-sub">% renda · maior = maior pressão habitacional</div>
+      <div id="rankAlug" class="funnel"></div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-title">Radar de Atratividade MCMV</div>
+      <div class="card-sub">Pontuação normalizada 0–100 por dimensão</div>
+      <div class="chart-h300"><canvas id="cRadar"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Mapa de Calor — Score por Dimensão</div>
+      <div class="card-sub">Pontuação 0–100 · verde = melhor desempenho na dimensão</div>
+      <div id="heatmap"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     07 · ANÁLISE
+══════════════════════════════════════════════════════════════ -->
+<section id="analise" class="section">
+  <div class="sec-hdr">
+    <span class="sec-num">07</span>
+    <h2 class="sec-title">Análise Estratégica</h2>
+    <span class="sec-badge gold">RDZ Empreendimentos</span>
+  </div>
+
+  <div class="g3" id="investCards"></div>
+
+  <div class="verdict">
+    <div class="verdict-title">Síntese — Mercado MCMV · 6 Cidades Secovi-SP · 2025/2026</div>
+    <div class="verdict-body">
+      Das 6 cidades monitoradas pelo Secovi-SP na região de Campinas, todas apresentam dinâmicas distintas dentro do MCMV. <strong style="color:var(--amber)">Hortolândia e Sumaré</strong> concentram a demanda de Faixas 1 e 2 — comprometimento de renda acima de 30%, população jovem e preços entre R$265k–R$290k garantem absorção muito rápida. Em Sumaré, o estoque de 2.238 unidades reflete lançamentos anteriores ainda em comercialização, não excesso de oferta. <strong style="color:var(--blue-lt)">Campinas</strong> domina em volume absoluto: 2.034 unidades MCMV lançadas e VGV de R$1,1 bilhão em 2025, com ticket médio de R$276k — perfil Faixa 2/3. <strong style="color:var(--gold-lt)">Indaiatuba</strong> tem o maior preço médio MCMV da região (R$321k) e a menor oferta final relativa (548 un.), sinalizando mercado muito aquecido — o novo teto Faixa 3 de R$400k é oportunidade direta. <strong style="color:var(--teal)">Jundiaí</strong> apresenta a maior restrição de oferta MCMV (apenas 197 un. disponíveis em dez/2025), a mais alta renda domiciliar e o segundo maior PIB per capita — com renda média de R$5.500 enquadrada na Faixa 3, representa a janela de maior escassez e potencial de valorização. <strong style="color:var(--rose)">Valinhos</strong> é o único município sem MCMV ativo (0 UL em 2025), confirmando seu posicionamento exclusivo de alto padrão.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="ft">
+    <div class="ft-txt">
+      Mercado Imobiliário: Secovi-SP — Anuário do Mercado Imobiliário 2025 (pesquisa mensal, dados referentes a 2025) · Apenas cidades com ficha completa no anuário são incluídas.<br>
+      Demográfico: IBGE Censo 2022 · PIB dos Municípios IBGE 2021 · Projeções Populacionais SEADE 2024<br>
+      Regras MCMV: Portaria MCID nº 333/2026 · Conselho Curador FGTS 24/03/2026 · Vigência operacional Caixa/BB 22/04/2026
+    </div>
+    <div class="ft-txt" style="text-align:right">
+      Abril 2026 · Uso interno · Para fins informativos<br>
+      <strong style="color:var(--gold)">RDZ Empreendimentos Imobiliários</strong>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ══ DATA ══════════════════════════════════════════════════════════
+const cities = [
+  {
+    id:'campinas', name:'Campinas', pop:1232000, idadeMedia:35.1,
+    rendaDom:5820, pibPerCap:47800, comprometimento:27, precoMedio:620000,
+    mcmvUL:2034, mcmvUV:3697, mcmvOF:1176, mcmvVGL:560.4, mcmvVGV:1108.8, mcmvVGO:345.1,
+    precoMcmv:276,
+    dormEcon1:7, dormEcon2:2027,
+    faixaPred:'Faixa 2/3',
+    desc:'Maior mercado MCMV absoluto da região. VGV de R$1,1 bi em 2025. Produto dominante: 2 dorms econômico (99% das UL MCMV). Ticket médio R$276k — enquadrado em Faixa 2/3.'
+  },
+  {
+    id:'indaiatuba', name:'Indaiatuba', pop:270000, idadeMedia:33.6,
+    rendaDom:4580, pibPerCap:39400, comprometimento:27, precoMedio:480000,
+    mcmvUL:1651, mcmvUV:2026, mcmvOF:548, mcmvVGL:529.7, mcmvVGV:651.3, mcmvVGO:177.2,
+    precoMcmv:321,
+    dormEcon1:227, dormEcon2:1424,
+    faixaPred:'Faixa 3',
+    desc:'Maior ticket médio MCMV da região (R$321k). Oferta final mais restrita (548 un.) com UV/UL de 1,23x. Novo teto Faixa 3 de R$400k abre espaço direto para produto de maior padrão.'
+  },
+  {
+    id:'hortolandia', name:'Hortolândia', pop:243000, idadeMedia:30.9,
+    rendaDom:3100, pibPerCap:22400, comprometimento:35, precoMedio:340000,
+    mcmvUL:1384, mcmvUV:1152, mcmvOF:1247, mcmvVGL:401.2, mcmvVGV:339.4, mcmvVGO:384.3,
+    precoMcmv:290,
+    dormEcon1:54, dormEcon2:1330,
+    faixaPred:'Faixa 1/2',
+    desc:'Maior comprometimento de renda com aluguel (35%). Pop. mais jovem da região (~30,9 anos). MCMV responde por 91% dos lançamentos. Produto concentrado em Faixa 1/2 (até R$275k).'
+  },
+  {
+    id:'sumare', name:'Sumaré', pop:295000, idadeMedia:31.8,
+    rendaDom:3400, pibPerCap:25800, comprometimento:32, precoMedio:360000,
+    mcmvUL:912, mcmvUV:1321, mcmvOF:2238, mcmvVGL:242.1, mcmvVGV:379.1, mcmvVGO:624.1,
+    precoMcmv:265,
+    dormEcon1:0, dormEcon2:912,
+    faixaPred:'Faixa 2',
+    desc:'Menor preço médio MCMV (R$265k). Maior estoque disponível (2.238 un.) — reflexo de lançamentos anteriores em venda. 100% das UL MCMV em 2 dorms econômico. Velocidade UV/UL de 1,45x.'
+  },
+  {
+    id:'jundiai', name:'Jundiaí', pop:470000, idadeMedia:36.1,
+    rendaDom:5500, pibPerCap:55500, comprometimento:25, precoMedio:580000,
+    mcmvUL:720, mcmvUV:766, mcmvOF:197, mcmvVGL:240.5, mcmvVGV:262.4, mcmvVGO:70.8,
+    precoMcmv:334,
+    dormEcon1:0, dormEcon2:720,
+    faixaPred:'Faixa 3',
+    desc:'Maior PIB per capita e renda domiciliar entre as 6 cidades. Oferta MCMV mais escassa da região (197 un.) em contraste com alta renda — mercado com maior desequilíbrio oferta/demanda.'
+  },
+  {
+    id:'valinhos', name:'Valinhos', pop:138000, idadeMedia:36.5,
+    rendaDom:5400, pibPerCap:46800, comprometimento:23, precoMedio:680000,
+    mcmvUL:0, mcmvUV:26, mcmvOF:3, mcmvVGL:0, mcmvVGV:8.3, mcmvVGO:1.0,
+    precoMcmv:null,
+    dormEcon1:0, dormEcon2:0,
+    faixaPred:'Sem MCMV',
+    desc:'Único município sem lançamentos MCMV em 2025 (UL=0). Mercado de alto padrão concentrado acima de R$500k. As 26 unidades vendidas são de estoque de períodos anteriores.'
+  }
+];
+
+// ══ PALETTE ══════════════════════════════════════════════════════
+const COL = {
+  campinas:'#2B7BE0', indaiatuba:'#C9A84C', hortolandia:'#22C55E',
+  sumare:'#F59E0B', jundiai:'#14B8A6', valinhos:'#FB7185'
+};
+const gc='rgba(0,0,0,0.07)';
+const tc='#9CA3AF';
+const mf="'JetBrains Mono',monospace";
+const bGrid={color:gc,drawBorder:false};
+const bTick={color:tc,font:{size:10,family:mf}};
+const tip={backgroundColor:'#1F2937',titleColor:'#F9FAFB',bodyColor:'#D1D5DB',borderColor:'rgba(255,255,255,.12)',borderWidth:1,padding:12,cornerRadius:8};
+
+// ══ FUNNEL ═══════════════════════════════════════════════════════
+const fData = {
+  ul: [...cities].filter(c=>c.mcmvUL>0).sort((a,b)=>b.mcmvUL-a.mcmvUL),
+  uv: [...cities].filter(c=>c.mcmvUV>0).sort((a,b)=>b.mcmvUV-a.mcmvUV),
+  of: [...cities].filter(c=>c.mcmvOF>0).sort((a,b)=>b.mcmvOF-a.mcmvOF)
+};
+const fKeys = {ul:'mcmvUL', uv:'mcmvUV', of:'mcmvOF'};
+
+function showFunnel(key, btn){
+  document.querySelectorAll('#funnelTabs .tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  const arr = fData[key];
+  const max = arr[0][fKeys[key]];
+  document.getElementById('funnelContent').innerHTML = arr.map(c=>`
+    <div class="fn-row">
+      <span class="fn-lbl">${c.name}</span>
+      <div class="fn-wrap">
+        <div class="fn-fill" style="width:${(c[fKeys[key]]/max)*100}%;background:${COL[c.id]}22;border:1px solid ${COL[c.id]}44;">
+          <span class="fn-val" style="color:${COL[c.id]}">${c[fKeys[key]].toLocaleString('pt-BR')}</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+showFunnel('ul', document.querySelector('.tab.active'));
+
+// ══ MAIN TABLE ═══════════════════════════════════════════════════
+function velPill(uv, ul){
+  if(ul===0) return `<span class="pill p-dim">Sem UL</span>`;
+  const r = uv/ul;
+  if(r>1.4) return `<span class="pill p-green">Muito Alta ${r.toFixed(2)}x</span>`;
+  if(r>1.0) return `<span class="pill p-teal">Alta ${r.toFixed(2)}x</span>`;
+  if(r>0.7) return `<span class="pill p-blue">Média ${r.toFixed(2)}x</span>`;
+  return `<span class="pill p-amber">Baixa ${r.toFixed(2)}x</span>`;
+}
+document.getElementById('mainTbody').innerHTML = cities.map(c=>`
+  <tr>
+    <td><strong style="color:${COL[c.id]}">${c.name}</strong></td>
+    <td style="font-family:var(--mono);color:var(--text)">${c.mcmvUL.toLocaleString('pt-BR')}</td>
+    <td style="font-family:var(--mono);color:var(--text)">${c.mcmvUV.toLocaleString('pt-BR')}</td>
+    <td style="font-family:var(--mono);color:var(--text)">${c.mcmvOF.toLocaleString('pt-BR')}</td>
+    <td style="font-family:var(--mono);color:var(--gold)">${c.mcmvVGL>0?'R$ '+c.mcmvVGL.toLocaleString('pt-BR'):'—'}</td>
+    <td style="font-family:var(--mono);color:var(--green)">${c.mcmvVGV>0?'R$ '+c.mcmvVGV.toLocaleString('pt-BR'):'—'}</td>
+    <td style="font-family:var(--mono);color:var(--teal)">${c.mcmvVGO>0?'R$ '+c.mcmvVGO.toLocaleString('pt-BR'):'—'}</td>
+    <td style="font-family:var(--mono)">${c.precoMcmv?'R$ '+c.precoMcmv+'k':'—'}</td>
+    <td>${velPill(c.mcmvUV,c.mcmvUL)}</td>
+  </tr>`).join('');
+
+// ══ DEMO TABLE ═══════════════════════════════════════════════════
+function faixaPill(f){
+  const m={
+    'Faixa 1/2':'p-green','Faixa 2':'p-teal','Faixa 2/3':'p-blue',
+    'Faixa 3':'p-blue','Sem MCMV':'p-dim'
+  };
+  return `<span class="pill ${m[f]||'p-dim'}">${f}</span>`;
+}
+document.getElementById('demoTbody').innerHTML = [...cities].sort((a,b)=>b.pop-a.pop).map(c=>`
+  <tr>
+    <td><strong style="color:${COL[c.id]}">${c.name}</strong></td>
+    <td style="font-family:var(--mono)">${(c.pop/1000).toFixed(0)}k hab.</td>
+    <td style="font-family:var(--mono)">${c.idadeMedia} anos</td>
+    <td style="font-family:var(--mono)">R$ ${c.rendaDom.toLocaleString('pt-BR')}</td>
+    <td style="font-family:var(--mono);color:var(--blue-lt)">R$ ${c.pibPerCap.toLocaleString('pt-BR')}</td>
+    <td style="font-family:var(--mono);color:var(--gold)">R$ ${(c.precoMedio/1000).toFixed(0)}k</td>
+    <td style="font-family:var(--mono);color:${c.comprometimento>=33?'var(--red)':c.comprometimento>=27?'var(--amber)':'var(--green)'}">${c.comprometimento}%</td>
+    <td>${faixaPill(c.faixaPred)}</td>
+  </tr>`).join('');
+
+// ══ CITY CARDS ═══════════════════════════════════════════════════
+document.getElementById('cityCards').innerHTML = cities.map(c=>`
+  <div class="cc" style="border-top:2px solid ${COL[c.id]}33">
+    <div class="cc-hdr">
+      <div>
+        <div class="cc-name" style="color:${COL[c.id]}">${c.name}</div>
+        <div class="cc-pop">${(c.pop/1000).toFixed(0)}k hab. · SP</div>
+      </div>
+      <span class="cc-src">● Secovi-SP</span>
+    </div>
+    <div class="cc-metrics">
+      <div class="cc-m">
+        <span class="cc-m-lbl">Renda Dom.</span>
+        <div class="cc-m-val" style="color:${COL[c.id]}">R$ ${c.rendaDom.toLocaleString('pt-BR')}</div>
+      </div>
+      <div class="cc-m">
+        <span class="cc-m-lbl">PIB per Capita</span>
+        <div class="cc-m-val" style="color:${COL[c.id]}">R$ ${(c.pibPerCap/1000).toFixed(1)}k</div>
+      </div>
+      <div class="cc-m">
+        <span class="cc-m-lbl">Idade Mediana</span>
+        <div class="cc-m-val" style="font-size:13px">${c.idadeMedia} anos</div>
+      </div>
+      <div class="cc-m">
+        <span class="cc-m-lbl">Compr. Aluguel</span>
+        <div class="cc-m-val" style="font-size:13px;color:${c.comprometimento>=33?'var(--red)':c.comprometimento>=27?'var(--amber)':'var(--green)'}">${c.comprometimento}%</div>
+      </div>
+    </div>
+    <div class="cc-divider"></div>
+    <div class="cc-mcmv">
+      <span class="cc-mcmv-lbl">UL MCMV</span>
+      <span class="cc-mcmv-val">${c.mcmvUL>0?c.mcmvUL.toLocaleString('pt-BR'):'—'}</span>
+      <span style="flex:1"></span>
+      <span class="cc-mcmv-lbl">Preço Médio</span>
+      <span class="cc-mcmv-val">${c.precoMcmv?'R$ '+c.precoMcmv+'k':'N/A'}</span>
+      <span style="flex:1"></span>
+      ${faixaPill(c.faixaPred)}
+    </div>
+    <div class="cc-desc">${c.desc}</div>
+  </div>`).join('');
+
+// ══ RANKING BARS ═════════════════════════════════════════════════
+function renderBars(id, data, fmt){
+  const max = Math.max(...data.map(d=>d.v));
+  document.getElementById(id).innerHTML = [...data].sort((a,b)=>b.v-a.v).map(d=>`
+    <div class="bar-row">
+      <span class="bar-lbl">${d.label}</span>
+      <div class="bar-wrap"><div class="bar-fill" style="width:${(d.v/max)*100}%;background:${d.color}"></div></div>
+      <span class="bar-num">${fmt(d.v)}</span>
+    </div>`).join('');
+}
+renderBars('rankUl', cities.map(c=>({label:c.name,v:c.mcmvUL,color:COL[c.id]})), v=>v.toLocaleString('pt-BR'));
+renderBars('rankPib', cities.map(c=>({label:c.name,v:c.pibPerCap/1000,color:COL[c.id]})), v=>'R$'+v.toFixed(1)+'k');
+renderBars('rankAlug', cities.map(c=>({label:c.name,v:c.comprometimento,color:c.comprometimento>=33?'#EF4444':c.comprometimento>=27?'#F59E0B':'#22C55E'})), v=>v+'%');
+
+// ══ INVEST CARDS ═════════════════════════════════════════════════
+const profiles=[
+  { city:'Hortolândia + Sumaré', color:'#22C55E', title:'Demanda Estrutural — Faixas 1 e 2',
+    body:'Comprometimento de renda acima de 30%, população jovem e preços entre R$265k–R$290k garantem altíssima velocidade de vendas. O MCMV é praticamente o único mercado nessas cidades.',
+    pros:['MCMV representa >90% dos lançamentos totais','Velocidade UV/UL acima de 1,0x','Menor preço médio — maior acessibilidade','Pop. jovem (30–32 anos) — demanda crescente'],
+    cons:['Renda domiciliar mais baixa','PIB per capita abaixo da média regional'] },
+  { city:'Campinas + Indaiatuba', color:'#2B7BE0', title:'Faixa 3 — Produto Premium MCMV',
+    body:'Ticket médio entre R$276k e R$321k. Novo teto Faixa 3 de R$400k abre espaço direto para produto de 2 dorms com padrão superior. Indaiatuba com oferta final mais restrita da região.',
+    pros:['Renda domiciliar R$4.580–5.820/mês','Novo teto R$400k aumenta margem de produto','Maior VGV MCMV absoluto da região (Campinas)','Oferta final restrita em Indaiatuba (548 un.)'],
+    cons:['Ticket mais alto exige maior capacidade de compra','Maior competição com produto não-MCMV'] },
+  { city:'Jundiaí', color:'#C9A84C', title:'Escassez Crítica — Maior Oportunidade',
+    body:'Apenas 197 unidades MCMV disponíveis em dez/2025, com a maior renda domiciliar das 6 cidades (R$5.500). Combinação de alta renda e oferta mínima cria o maior desequilíbrio da região.',
+    pros:['Maior PIB per capita (R$55.500/hab)','Oferta final mais restrita (197 un.)','Renda alinhada à Faixa 3 (até R$9.600)','Ticket histórico de R$334k — abaixo do novo teto'],
+    cons:['Menor volume de lançamentos recentes','Identificar glebas disponíveis pode ser desafio'] }
+];
+document.getElementById('investCards').innerHTML = profiles.map(p=>`
+  <div class="card" style="border-top:3px solid ${p.color}">
+    <div style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:${p.color};margin-bottom:5px">${p.city}</div>
+    <div style="font-family:var(--serif);font-size:17px;margin-bottom:10px">${p.title}</div>
+    <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:14px">${p.body}</div>
+    ${p.pros.map(x=>`<div style="font-size:11px;color:var(--muted);display:flex;gap:7px;margin-bottom:4px"><span style="color:var(--green);flex-shrink:0">✓</span>${x}</div>`).join('')}
+    ${p.cons.map(x=>`<div style="font-size:11px;color:var(--muted);display:flex;gap:7px;margin-bottom:4px;margin-top:4px"><span style="color:var(--dim);flex-shrink:0">—</span>${x}</div>`).join('')}
+  </div>`).join('');
+
+// ══ HEATMAP ══════════════════════════════════════════════════════
+function sc(val,arr,invert=false){
+  const min=Math.min(...arr),max=Math.max(...arr);
+  const s=(val-min)/(max-min)*100;
+  return invert?100-s:s;
+}
+const dims=['Volume MCMV','Demanda Aluguel','PIB per Cap.','Preço Acess.','Renda Dom.'];
+const hcScores = cities.map(c=>[
+  sc(c.mcmvUL, cities.map(x=>x.mcmvUL)),
+  sc(c.comprometimento, cities.map(x=>x.comprometimento)),
+  sc(c.pibPerCap, cities.map(x=>x.pibPerCap)),
+  sc(c.precoMcmv||999, cities.map(x=>x.precoMcmv||999), true),
+  sc(c.rendaDom, cities.map(x=>x.rendaDom))
+]);
+function hColor(s){return s>70?'rgba(34,197,94,.18)':s>45?'rgba(20,184,166,.14)':s>25?'rgba(245,158,11,.12)':'rgba(239,68,68,.1)';}
+function hTColor(s){return s>70?'#22C55E':s>45?'#14B8A6':s>25?'#F59E0B':'#EF4444';}
+document.getElementById('heatmap').innerHTML=`
+<table class="heatmap-tbl">
+<thead><tr><th>Cidade</th>${dims.map(d=>`<th>${d}</th>`).join('')}</tr></thead>
+<tbody>${cities.map((c,i)=>`
+  <tr>
+    <td style="color:${COL[c.id]}">${c.name}</td>
+    ${hcScores[i].map(s=>`<td><div class="hcell" style="background:${hColor(s)};color:${hTColor(s)}">${s.toFixed(0)}</div></td>`).join('')}
+  </tr>`).join('')}
+</tbody></table>`;
+
+// ══ CHARTS ═══════════════════════════════════════════════════════
+
+// 1 – Donut MCMV share (interior 41 cidades)
+new Chart(document.getElementById('cDonut'),{type:'doughnut',data:{
+  labels:['MCMV (56%)','Outros Mercados (44%)'],
+  datasets:[{data:[56,44],backgroundColor:['rgba(43,123,224,.75)','rgba(255,255,255,.06)'],borderColor:['#2B7BE0','rgba(255,255,255,.1)'],borderWidth:2,hoverOffset:6}]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{
+  legend:{display:true,position:'right',labels:{color:'#7d8799',font:{size:11,family:mf},padding:16,boxWidth:12}},
+  tooltip:{...tip,callbacks:{label:v=>v.label}},cutout:'65%'
+}}});
+
+// 2 – Lançamentos por cidade
+const lancSort=[...cities].filter(c=>c.mcmvUL>0).sort((a,b)=>b.mcmvUL-a.mcmvUL);
+new Chart(document.getElementById('cLanc'),{type:'bar',data:{
+  labels:lancSort.map(c=>c.name),
+  datasets:[{data:lancSort.map(c=>c.mcmvUL),backgroundColor:lancSort.map(c=>COL[c.id]+'BB'),borderColor:lancSort.map(c=>COL[c.id]),borderWidth:1,borderRadius:5,borderSkipped:false}]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:v=>v.raw.toLocaleString('pt-BR')+' unid.'}}},
+scales:{x:{grid:bGrid,ticks:bTick},y:{grid:bGrid,ticks:{...bTick,callback:v=>v.toLocaleString('pt-BR')}}}}});
+
+// 3 – Preço médio (excl. Valinhos UL=0)
+const precoSort=[...cities].filter(c=>c.precoMcmv).sort((a,b)=>b.precoMcmv-a.precoMcmv);
+new Chart(document.getElementById('cPreco'),{type:'bar',data:{
+  labels:precoSort.map(c=>c.name),
+  datasets:[
+    {data:precoSort.map(c=>c.precoMcmv),backgroundColor:precoSort.map(c=>COL[c.id]+'99'),borderColor:precoSort.map(c=>COL[c.id]),borderWidth:1,borderRadius:4,borderSkipped:false},
+    {type:'line',label:'Teto Faixa 3 (R$400k)',data:Array(precoSort.length).fill(400),borderColor:'rgba(76,154,255,.5)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[5,4],pointRadius:0},
+    {type:'line',label:'Teto Faixas 1+2 (R$275k)',data:Array(precoSort.length).fill(275),borderColor:'rgba(34,197,94,.4)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[3,3],pointRadius:0}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{
+  legend:{display:true,labels:{color:tc,font:{size:9,family:mf},boxWidth:10,padding:10}},
+  tooltip:{...tip,callbacks:{label:v=>typeof v.raw==='number'?'R$ '+v.raw+'k':''}}
+},scales:{x:{grid:bGrid,ticks:bTick},y:{grid:bGrid,ticks:{...bTick,callback:v=>'R$'+v+'k'},min:220,max:430}}}});
+
+// 4 – VGV
+const vgvSort=[...cities].filter(c=>c.mcmvVGV>0).sort((a,b)=>b.mcmvVGV-a.mcmvVGV);
+new Chart(document.getElementById('cVgv'),{type:'bar',data:{
+  labels:vgvSort.map(c=>c.name),
+  datasets:[{data:vgvSort.map(c=>c.mcmvVGV),backgroundColor:vgvSort.map(c=>COL[c.id]+'AA'),borderColor:vgvSort.map(c=>COL[c.id]),borderWidth:1,borderRadius:5,borderSkipped:false}]
+},options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:v=>'R$ '+v.raw.toLocaleString('pt-BR')+' mi'}}},
+scales:{x:{grid:bGrid,ticks:{...bTick,callback:v=>'R$'+v+'mi'}},y:{grid:bGrid,ticks:bTick}}}});
+
+// 5 – UV vs OF
+new Chart(document.getElementById('cUvOf'),{type:'bar',data:{
+  labels:cities.map(c=>c.name),
+  datasets:[
+    {label:'UV — Vendas 2025',data:cities.map(c=>c.mcmvUV),backgroundColor:'rgba(34,197,94,.65)',borderColor:'#22C55E',borderWidth:1,borderRadius:4,borderSkipped:false},
+    {label:'OF — Estoque Dez/25',data:cities.map(c=>c.mcmvOF),backgroundColor:'rgba(43,123,224,.5)',borderColor:'#2B7BE0',borderWidth:1,borderRadius:4,borderSkipped:false}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{
+  legend:{display:true,labels:{color:tc,font:{size:10,family:mf},boxWidth:10,padding:12}},
+  tooltip:{...tip,callbacks:{label:v=>v.dataset.label+': '+v.raw.toLocaleString('pt-BR')}}
+},scales:{x:{grid:bGrid,ticks:bTick},y:{grid:bGrid,ticks:{...bTick,callback:v=>v.toLocaleString('pt-BR')}}}}});
+
+// 6 – Dormitórios MCMV (agrupado)
+new Chart(document.getElementById('cDorm'),{type:'bar',data:{
+  labels:cities.filter(c=>c.mcmvUL>0).map(c=>c.name),
+  datasets:[
+    {label:'1 Dorm Econômico',data:cities.filter(c=>c.mcmvUL>0).map(c=>c.dormEcon1),backgroundColor:'rgba(201,168,76,.6)',borderColor:'#C9A84C',borderWidth:1,borderRadius:[4,4,0,0],borderSkipped:false},
+    {label:'2 Dorms Econômico',data:cities.filter(c=>c.mcmvUL>0).map(c=>c.dormEcon2),backgroundColor:'rgba(43,123,224,.6)',borderColor:'#2B7BE0',borderWidth:1,borderRadius:[4,4,0,0],borderSkipped:false}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{
+  legend:{display:true,labels:{color:tc,font:{size:10,family:mf},boxWidth:10,padding:12}},
+  tooltip:{...tip,callbacks:{label:v=>v.dataset.label+': '+v.raw.toLocaleString('pt-BR')+' un.'}}
+},scales:{x:{grid:bGrid,ticks:bTick,stacked:true},y:{grid:bGrid,ticks:{...bTick,callback:v=>v.toLocaleString('pt-BR')},stacked:true}}}});
+
+// 7 – Velocidade UV/UL
+const velData=[...cities].filter(c=>c.mcmvUL>0).sort((a,b)=>(b.mcmvUV/b.mcmvUL)-(a.mcmvUV/a.mcmvUL));
+new Chart(document.getElementById('cVeloc'),{type:'bar',data:{
+  labels:velData.map(c=>c.name),
+  datasets:[{
+    data:velData.map(c=>+(c.mcmvUV/c.mcmvUL).toFixed(2)),
+    backgroundColor:velData.map(c=>c.mcmvUV/c.mcmvUL>1.4?'rgba(34,197,94,.7)':c.mcmvUV/c.mcmvUL>1.0?'rgba(20,184,166,.6)':'rgba(245,158,11,.6)'),
+    borderColor:velData.map(c=>c.mcmvUV/c.mcmvUL>1.4?'#22C55E':c.mcmvUV/c.mcmvUL>1.0?'#14B8A6':'#F59E0B'),
+    borderWidth:1,borderRadius:4,borderSkipped:false
+  },{type:'line',label:'UV = UL (1,0x)',data:Array(velData.length).fill(1),borderColor:'rgba(255,255,255,.2)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[5,4],pointRadius:0}]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{
+  legend:{display:true,labels:{color:tc,font:{size:9,family:mf},boxWidth:10,padding:10}},
+  tooltip:{...tip,callbacks:{label:v=>typeof v.raw==='number'&&v.datasetIndex===0?'Razão UV/UL: '+v.raw+'x':''}}
+},scales:{x:{grid:bGrid,ticks:bTick},y:{grid:bGrid,ticks:{...bTick,callback:v=>v+'x'},min:0,max:2.2}}}});
+
+// 8 – PIB
+const pibSort=[...cities].sort((a,b)=>b.pibPerCap-a.pibPerCap);
+new Chart(document.getElementById('cPib'),{type:'bar',data:{
+  labels:pibSort.map(c=>c.name),
+  datasets:[{data:pibSort.map(c=>c.pibPerCap/1000),backgroundColor:pibSort.map(c=>COL[c.id]+'AA'),borderColor:pibSort.map(c=>COL[c.id]),borderWidth:1,borderRadius:4,borderSkipped:false}]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:v=>'R$ '+v.raw.toFixed(1)+'k/hab'}}},
+scales:{x:{grid:bGrid,ticks:bTick},y:{grid:bGrid,ticks:{...bTick,callback:v=>'R$'+v+'k'}}}}});
+
+// 9 – Renda domiciliar
+const rendaSort=[...cities].sort((a,b)=>b.rendaDom-a.rendaDom);
+new Chart(document.getElementById('cRenda'),{type:'bar',data:{
+  labels:rendaSort.map(c=>c.name),
+  datasets:[
+    {data:rendaSort.map(c=>c.rendaDom),backgroundColor:rendaSort.map(c=>COL[c.id]+'99'),borderColor:rendaSort.map(c=>COL[c.id]),borderWidth:1,borderRadius:4,borderSkipped:false},
+    {type:'line',label:'Teto Faixa 3 (R$9.600)',data:Array(rendaSort.length).fill(9600),borderColor:'rgba(76,154,255,.5)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[5,4],pointRadius:0},
+    {type:'line',label:'Teto Faixa 2 (R$5.000)',data:Array(rendaSort.length).fill(5000),borderColor:'rgba(201,168,76,.45)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[3,3],pointRadius:0}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{
+  legend:{display:true,labels:{color:tc,font:{size:9,family:mf},boxWidth:10,padding:8}},
+  tooltip:{...tip,callbacks:{label:v=>typeof v.raw==='number'?'R$ '+v.raw.toLocaleString('pt-BR'):''}}
+},scales:{x:{grid:bGrid,ticks:bTick},y:{grid:bGrid,ticks:{...bTick,callback:v=>'R$'+v.toLocaleString('pt-BR')},min:2000}}}});
+
+// 10 – Comprometimento
+const alugSort=[...cities].sort((a,b)=>b.comprometimento-a.comprometimento);
+new Chart(document.getElementById('cAlug'),{type:'bar',data:{
+  labels:alugSort.map(c=>c.name),
+  datasets:[
+    {data:alugSort.map(c=>c.comprometimento),backgroundColor:alugSort.map(c=>c.comprometimento>=33?'rgba(239,68,68,.65)':c.comprometimento>=27?'rgba(245,158,11,.6)':'rgba(34,197,94,.6)'),borderColor:alugSort.map(c=>c.comprometimento>=33?'#EF4444':c.comprometimento>=27?'#F59E0B':'#22C55E'),borderWidth:1,borderRadius:4,borderSkipped:false},
+    {type:'line',label:'Limite saudável (30%)',data:Array(alugSort.length).fill(30),borderColor:'rgba(255,255,255,.25)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[5,4],pointRadius:0}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{
+  legend:{display:true,labels:{color:tc,font:{size:9,family:mf},boxWidth:10,padding:8}},
+  tooltip:{...tip,callbacks:{label:v=>typeof v.raw==='number'?v.raw+'%':''}}
+},scales:{x:{grid:bGrid,ticks:bTick},y:{grid:bGrid,ticks:{...bTick,callback:v=>v+'%'},min:15,max:42}}}});
+
+// 11 – Renda por faixa (substituiu scatter)
+const rendaFxSort=[...cities].sort((a,b)=>b.rendaDom-a.rendaDom);
+new Chart(document.getElementById('cRendaFx'),{type:'bar',data:{
+  labels:rendaFxSort.map(c=>c.name),
+  datasets:[
+    {label:'Renda Dom. Média',data:rendaFxSort.map(c=>c.rendaDom),backgroundColor:rendaFxSort.map(c=>COL[c.id]+'BB'),borderColor:rendaFxSort.map(c=>COL[c.id]),borderWidth:1.5,borderRadius:5,borderSkipped:false},
+    {type:'line',label:'Teto Faixa 4 (R$13.000)',data:Array(rendaFxSort.length).fill(13000),borderColor:'rgba(168,123,32,.5)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[6,4],pointRadius:0},
+    {type:'line',label:'Teto Faixa 3 (R$9.600)',data:Array(rendaFxSort.length).fill(9600),borderColor:'rgba(29,111,216,.5)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[5,4],pointRadius:0},
+    {type:'line',label:'Teto Faixa 2 (R$5.000)',data:Array(rendaFxSort.length).fill(5000),borderColor:'rgba(13,148,136,.5)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[3,3],pointRadius:0}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{
+  legend:{display:true,labels:{color:tc,font:{size:9,family:mf},boxWidth:10,padding:8}},
+  tooltip:{...tip,callbacks:{label:v=>typeof v.raw==='number'?v.dataset.label+': R$'+v.raw.toLocaleString('pt-BR'):''}}
+},scales:{x:{grid:bGrid,ticks:bTick},y:{grid:bGrid,ticks:{...bTick,callback:v=>'R$'+v.toLocaleString('pt-BR')},min:0,max:15000}}}});
+
+// 12 – Faixas enquadramento
+new Chart(document.getElementById('cFaixas'),{type:'bar',data:{
+  labels:cities.map(c=>c.name),
+  datasets:[
+    {label:'Renda Dom. Média (R$/mês)',data:cities.map(c=>c.rendaDom),backgroundColor:cities.map(c=>COL[c.id]+'88'),borderColor:cities.map(c=>COL[c.id]),borderWidth:1,borderRadius:4,borderSkipped:false},
+    {type:'line',label:'Teto Faixa 4 (R$13.000)',data:Array(cities.length).fill(13000),borderColor:'rgba(201,168,76,.5)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[5,4],pointRadius:0},
+    {type:'line',label:'Teto Faixa 3 (R$9.600)',data:Array(cities.length).fill(9600),borderColor:'rgba(76,154,255,.5)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[5,4],pointRadius:0},
+    {type:'line',label:'Teto Faixa 2 (R$5.000)',data:Array(cities.length).fill(5000),borderColor:'rgba(20,184,166,.5)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[3,3],pointRadius:0},
+    {type:'line',label:'Teto Faixa 1 (R$3.200)',data:Array(cities.length).fill(3200),borderColor:'rgba(34,197,94,.4)',backgroundColor:'transparent',borderWidth:1.5,borderDash:[2,3],pointRadius:0}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{
+  legend:{display:true,labels:{color:tc,font:{size:9,family:mf},boxWidth:10,padding:8}},
+  tooltip:{...tip,callbacks:{label:v=>typeof v.raw==='number'?v.dataset.label+': R$'+v.raw.toLocaleString('pt-BR'):''}}
+},scales:{x:{grid:bGrid,ticks:bTick},y:{grid:bGrid,ticks:{...bTick,callback:v=>'R$'+v.toLocaleString('pt-BR')},min:0,max:15000}}}});
+
+// 13 – Evolução teto MCMV
+new Chart(document.getElementById('cEvolucao'),{type:'line',data:{
+  labels:['Antes 2025','Abr/2025','Mai/2025\n(F4 criada)','Abr/2026'],
+  datasets:[
+    {label:'Teto Faixa 3',data:[8000,8000,8600,9600],borderColor:'#4C9AFF',backgroundColor:'rgba(43,123,224,.06)',borderWidth:2.5,fill:true,tension:0.3,pointRadius:5,pointHoverRadius:7},
+    {label:'Teto Faixa 4 (Classe Média)',data:[null,null,12000,13000],borderColor:'#C9A84C',backgroundColor:'rgba(201,168,76,.05)',borderWidth:2.5,fill:true,tension:0.3,pointRadius:5,pointHoverRadius:7},
+    {label:'Teto Faixa 1',data:[2850,2850,2850,3200],borderColor:'#22C55E',backgroundColor:'transparent',borderWidth:1.5,tension:0.3,pointRadius:4,borderDash:[3,3]},
+    {label:'Teto Faixa 2',data:[4700,4700,4700,5000],borderColor:'#14B8A6',backgroundColor:'transparent',borderWidth:1.5,tension:0.3,pointRadius:4,borderDash:[3,3]}
+  ]
+},options:{responsive:true,maintainAspectRatio:false,plugins:{
+  legend:{display:true,labels:{color:tc,font:{size:10,family:mf},boxWidth:10,padding:12}},
+  tooltip:{...tip,callbacks:{label:v=>v.dataset.label+': R$'+v.raw?.toLocaleString('pt-BR')}}
+},scales:{x:{grid:bGrid,ticks:bTick},y:{grid:bGrid,ticks:{...bTick,callback:v=>'R$'+v.toLocaleString('pt-BR')},min:2000,max:15000}}}});
+
+// 14 – Radar
+new Chart(document.getElementById('cRadar'),{type:'radar',data:{
+  labels:['Volume MCMV','Pressão Demanda','PIB per Capita','Acessib. Preço','Renda Dom.'],
+  datasets:cities.map(c=>({
+    label:c.name,
+    data:[
+      sc(c.mcmvUL,cities.map(x=>x.mcmvUL)),
+      sc(c.comprometimento,cities.map(x=>x.comprometimento)),
+      sc(c.pibPerCap,cities.map(x=>x.pibPerCap)),
+      c.precoMcmv?sc(c.precoMcmv,cities.filter(x=>x.precoMcmv).map(x=>x.precoMcmv),true):0,
+      sc(c.rendaDom,cities.map(x=>x.rendaDom))
+    ],
+    borderColor:COL[c.id],backgroundColor:COL[c.id]+'15',borderWidth:1.5,
+    pointBackgroundColor:COL[c.id],pointRadius:3
+  }))
+},options:{responsive:true,maintainAspectRatio:false,plugins:{
+  legend:{display:true,labels:{color:tc,font:{size:9,family:mf},boxWidth:10,padding:10}},
+  tooltip:{...tip}
+},scales:{r:{grid:{color:'rgba(255,255,255,.06)'},angleLines:{color:'rgba(255,255,255,.05)'},pointLabels:{color:tc,font:{size:9,family:mf}},ticks:{display:false},min:0,max:100}}}});
+
+// ══ NAV SCROLL ════════════════════════════════════════════════════
+const secs=document.querySelectorAll('section[id]');
+const navAs=document.querySelectorAll('.nav a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-130)cur=s.id;});
+  navAs.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+cur);});
+});
+</script>
+</body>
+</html>
